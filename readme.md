@@ -37,7 +37,7 @@ Interface:
           --help            Display this help text and exit.
           --version         Display version number and exit.
 
-Install from the Python package index using `pip`:
+Install:
 
     $ pip install hex
 
