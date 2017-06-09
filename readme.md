@@ -41,4 +41,4 @@ Install:
 
     $ pip install hex
 
-This application requires Python 3.
+Hex requires Python 3.
