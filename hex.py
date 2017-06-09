@@ -19,7 +19,7 @@ __version__ = '2.0.0'
 
 # Command line help text.
 helptext = """
-Usage: %s [FLAGS] [OPTIONS] ARGUMENTS
+Usage: %s [FLAGS] [OPTIONS] [ARGUMENTS]
 
   Hexdump utility.
 

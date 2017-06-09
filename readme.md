@@ -21,7 +21,7 @@ Interface:
 
     $ hex --help
 
-    Usage: hex [FLAGS] [OPTIONS] ARGUMENTS
+    Usage: hex [FLAGS] [OPTIONS] [ARGUMENTS]
 
       Hexdump utility.
 
