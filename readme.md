@@ -3,7 +3,7 @@
 
 A hexdump command line utility implemented in Python.
 
-Sample output:
+Output:
 
     $ hex < hex.py -n 128
     ────────────────────────────────────────────────────────────────────────────────
@@ -26,7 +26,7 @@ Interface:
       Hexdump utility.
 
     Arguments:
-      [file]                File to dump. Defaults to stdin.
+      [file]                File to dump. Defaults to reading from stdin.
 
     Options:
       -l, --line <int>      Bytes per line in output (defaults to 16).
@@ -36,3 +36,17 @@ Interface:
     Flags:
           --help            Display this help text and exit.
           --version         Display version number and exit.
+
+
+## Installation
+
+Install from the Python package index using `pip`:
+
+    $ pip install hex
+
+This application requires Python 3.
+
+
+## License
+
+This work has been placed in the public domain.

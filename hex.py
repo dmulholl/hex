@@ -24,7 +24,7 @@ Usage: %s [FLAGS] [OPTIONS] ARGUMENTS
   Hexdump utility.
 
 Arguments:
-  [file]                File to dump. Defaults to stdin.
+  [file]                File to dump. Defaults to reading from stdin.
 
 Options:
   -l, --line <int>      Bytes per line in output (defaults to 16).
