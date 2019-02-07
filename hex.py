@@ -14,7 +14,7 @@ import shutil
 
 
 # Application version number.
-__version__ = '2.0.0'
+__version__ = '2.1.0'
 
 
 # Command line help text.
@@ -32,8 +32,8 @@ Options:
   -o, --offset <int>    Byte offset at which to begin reading.
 
 Flags:
-      --help            Display this help text and exit.
-      --version         Display version number and exit.
+  -h, --help            Display this help text and exit.
+  -v, --version         Display version number and exit.
 
 """ % os.path.basename(sys.argv[0])
 
@@ -65,7 +65,7 @@ def write(s):
 def writeln(offset, buffer, bytes_per_line):
 
     # Write the line number.
-    write('% 6X │' % offset)
+    write('% 6X \u001B[90m│\u001B[0m' % offset)
 
     for i in range(bytes_per_line):
 
@@ -76,11 +76,12 @@ def writeln(offset, buffer, bytes_per_line):
         # Write the byte in hex form, or a spacer if we're out of bytes.
         write(' %02X' % buffer[i] if i < len(buffer) else '   ')
 
-    write(' │ ')
+    write('\u001B[90m │ \u001B[0m')
 
     # Write a character for each byte in the printable ascii range.
     for i in range(len(buffer)):
-        write('%c' % buffer[i] if 32 <= buffer[i] <= 126 else '·')
+        nonprintable = '\u001B[90m·\u001B[0m'
+        write('%c' % buffer[i] if 32 <= buffer[i] <= 126 else nonprintable)
 
     write('\n')
 
@@ -97,7 +98,7 @@ def dump(file, offset, bytes_to_read, bytes_per_line):
 
     # Print a line.
     cols, _ = shutil.get_terminal_size()
-    print("─" * cols)
+    print('\u001B[90m' + '─' * cols + '\u001B[0m')
 
     # Read and dump one line per iteration.
     while True:
@@ -125,7 +126,7 @@ def dump(file, offset, bytes_to_read, bytes_per_line):
         else:
             break
 
-    print("─" * cols)
+    print('\u001B[90m' + '─' * cols + '\u001B[0m')
 
 
 def main():
@@ -144,12 +145,12 @@ def main():
     )
 
     # Flags.
-    parser.add_argument('--help',
+    parser.add_argument('-h', '--help',
         action = HelpAction,
         nargs=0,
         help = 'print this help message and exit',
     )
-    parser.add_argument('--version',
+    parser.add_argument('-v', '--version',
         action='version',
         version=__version__,
     )
