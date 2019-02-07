@@ -1,10 +1,10 @@
 #!/usr/bin/env python3
-# --------------------------------------------------------------------------
+# ------------------------------------------------------------------------------
 # Hexdump command line utility. Requires Python 3.
 #
 # Author: Darren Mulholland <darren@mulholland.xyz>
 # License: Public Domain
-# --------------------------------------------------------------------------
+# ------------------------------------------------------------------------------
 
 import argparse
 import os
@@ -14,7 +14,7 @@ import shutil
 
 
 # Application version number.
-__version__ = '2.1.0'
+__version__ = '2.2.0'
 
 
 # Command line help text.
@@ -27,9 +27,10 @@ Arguments:
   [file]                File to dump. Defaults to reading from stdin.
 
 Options:
-  -l, --line <int>      Bytes per line in output (defaults to 16).
+  -l, --line <int>      Bytes per line in output (default: 16).
   -n, --number <int>    Number of bytes to read.
   -o, --offset <int>    Byte offset at which to begin reading.
+  -w, --width <int>     Line number width (default: 6).
 
 Flags:
   -h, --help            Display this help text and exit.
@@ -62,10 +63,10 @@ def write(s):
 
 
 # Print a single line of output to stdout.
-def writeln(offset, buffer, bytes_per_line):
+def writeln(offset, buffer, bytes_per_line, line_num_width):
 
     # Write the line number.
-    write('% 6X \u001B[90m│\u001B[0m' % offset)
+    write('% *X \u001B[90m│\u001B[0m' % (line_num_width, offset))
 
     for i in range(bytes_per_line):
 
@@ -87,7 +88,7 @@ def writeln(offset, buffer, bytes_per_line):
 
 
 # Dump the specified file to stdout.
-def dump(file, offset, bytes_to_read, bytes_per_line):
+def dump(file, offset, bytes_to_read, bytes_per_line, line_num_width):
 
     # If an offset has been specified, attempt to seek to it.
     if offset:
@@ -120,7 +121,7 @@ def dump(file, offset, bytes_to_read, bytes_per_line):
 
         # A buffer length of zero means we're done.
         if len(buffer):
-            writeln(offset, buffer, bytes_per_line)
+            writeln(offset, buffer, bytes_per_line, line_num_width)
             offset += len(buffer)
             bytes_to_read -= len(buffer)
         else:
@@ -176,9 +177,15 @@ def main():
         default=0,
         dest='offset',
     )
+    parser.add_argument('-w', '--width',
+        help='line number width (default: 6)',
+        type=int,
+        default=6,
+        dest='num_width',
+    )
 
     args = parser.parse_args()
-    dump(args.file, args.offset, args.btr, args.bpl)
+    dump(args.file, args.offset, args.btr, args.bpl, args.num_width)
 
 
 if __name__ == '__main__':
