@@ -9,4 +9,4 @@ Hex is a simple hexdump utility implemented in Python.
 
 See the [documentation] for details.
 
-[documentation]: https://darrenmulholland.com/dev/hex.html
+[documentation]: http://www.dmulholl.com/dev/hex.html

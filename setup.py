@@ -5,7 +5,7 @@ Hexdump Utility
 
 A command line hexdump utility.
 
-See the module's `Github homepage <https://github.com/dmulholland/hex>`_
+See the module's `Github homepage <https://github.com/dmulholl/hex>`_
 for details.
 
 """
@@ -33,7 +33,7 @@ setup(
         ],
     },
     author = 'Darren Mulholland',
-    url = 'https://github.com/dmulholland/hex',
+    url = 'https://github.com/dmulholl/hex',
     license = 'Public Domain',
     description = (
         'Hexdump command line utility.'
