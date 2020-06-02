@@ -1,9 +1,6 @@
 #!/usr/bin/env python3
 # ------------------------------------------------------------------------------
 # Hexdump command line utility. Requires Python 3.
-#
-# Author: Darren Mulholland <darren@mulholland.xyz>
-# License: Public Domain
 # ------------------------------------------------------------------------------
 
 import argparse
